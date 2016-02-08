@@ -1,6 +1,8 @@
 package xander.soupalphas;
 
+
 import java.util.HashMap;
+
 import java.util.Random;
 
 /**
@@ -12,10 +14,6 @@ public class GenAlphas {
 
     private HashMap<String,Integer> bowl = new HashMap<String,Integer>();
 
-    public HashMap<String, Integer> getBowl() {
-        return this.bowl;
-    }
-
     public HashMap<String,Integer> genAlphabetStream(int howManyLetters) throws Exception {
         Random r = new Random();
 
@@ -24,7 +22,7 @@ public class GenAlphas {
 
             if (test==0)
             {
-                System.out.print(" LwrBndZero=");
+                System.out.print(" LwrBnd0=");
             }
             else if (test == UPPR_BND_NOTINCL)
             {
@@ -33,7 +31,7 @@ public class GenAlphas {
             }
             else if (test == (UPPR_BND_NOTINCL - 1))
             {
-                System.out.print(" UpprBnd26=");
+                System.out.print(" UpprBnd25=");
             }
 
             char cc = (char)('A' + test) ;
@@ -80,8 +78,6 @@ public class GenAlphas {
             System.exit(1);
         }
 
-
-
         GenAlphas g = new GenAlphas() ;
         try {
             System.out.println("Generating my Soup Bowl of Letters Randomly and putting them into Alphabet Key Ordered HashMap ..... ");
@@ -103,29 +99,28 @@ public class GenAlphas {
             System.out.println("Attempting to build the word " + arg1theWord2Make + " using the letters from the HashMap Soup Bowl");
             System.out.println("Legend ?=bowl never had that letter *=bowl had that letter but it did not have enough ");
             boolean youGotLucky = true ;
-            for (String findDisltr : arg1theWord2Make.split("") ) {
-                Integer whatslft = c.get(findDisltr);
-                if (whatslft == null)
-                {
-                    System.out.print("?");// the bowl never had those letters
-                    youGotLucky = false ;
 
+            FindMyLtr fml = (u,h) -> { return (new FindMyLtrCodeBlk()).chkIfLtrExists(u,h); };
+
+            for (String findDisltr : arg1theWord2Make.split("") ) {
+
+                String tstt = fml.chkIfLtrExists(findDisltr,c) ;
+                if (tstt.equals("?"))
+                {
+                    youGotLucky = false;
+
+                }
+                else if (tstt.equals("*"))
+                {
+                    youGotLucky = false;
                 }
                 else
                 {
-                    int currTot = whatslft.intValue();
-                    if (currTot > 0) {
-                        System.out.print(findDisltr) ;
-                        c.put(findDisltr,currTot - 1);
-                    }
-                    else
-                    {
-                        System.out.print("*"); // the bowl had dat letter but it ran out
-                        youGotLucky = false ;
-                    }
-
+                    // found a letter to make my word
                 }
+                System.out.print(tstt);
             }
+
             System.out.println("\nFinished trying to make this word");
             if (youGotLucky)
             {
@@ -138,5 +133,6 @@ public class GenAlphas {
             ee.printStackTrace();
         }
     }
+
 
 }
