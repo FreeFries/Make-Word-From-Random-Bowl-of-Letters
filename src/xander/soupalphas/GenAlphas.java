@@ -1,9 +1,11 @@
 package xander.soupalphas;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * Created by apereira on 07/02/16.
@@ -58,26 +60,52 @@ public class GenAlphas {
     {
         int arg0SoupBowlSize = 0 ;
         String arg1theWord2Make = "" ;
+        boolean exitWithError = false ;
 
         try {
-            arg0SoupBowlSize = new Integer(args[0]).intValue(); //25 ;
-            arg1theWord2Make = args[1]; // "SuperCaliFragilistic";
-            if (arg0SoupBowlSize <= 0 || arg1theWord2Make.length() <= 0)
+            if (args.length == 2)
             {
-                throw new Exception("Error runnning GenAlphas <#AlphabetsInBowl="+arg0SoupBowlSize +"> <theWordUWantToMake='"+arg1theWord2Make+"'>");
+                arg0SoupBowlSize = new Integer(args[0]).intValue(); //25 ;
+                arg1theWord2Make = args[1]; // "SuperCaliFragilistic";
+                if (arg0SoupBowlSize <= 0 || arg1theWord2Make.length() <= 0)
+                {
+                    // should have atleast 1 letter in bowl and should be told to make a word that it is atleast an alphabet long
+                    exitWithError = true ;
+                    throw new Exception("Error INVALID params for GenAlphas <#AlphabetsInBowl="+arg0SoupBowlSize +"> <theWordUWantToMake='"+arg1theWord2Make+"'>");
+                }
+                else
+                {
+                    if (validateNoNumbrsInWord(arg1theWord2Make))
+                    {
+                        exitWithError = true ;
+                        throw new Exception("There are NUMBERS in your Word - there are ONLY alphabets in the soup bowl as of now ... Sorry");
+                    }
+
+                }
+
             }
             else
             {
-                System.out.println("Running GenAlphas <#AlphabetsInBowl="+arg0SoupBowlSize +"> <theWordUWantToMake='"+arg1theWord2Make+"'>");
-                arg1theWord2Make = arg1theWord2Make.toUpperCase();
+                throw new Exception("Error runnning GenAlphas <#AlphabetsInBowl=?)> <theWordUWantToMake=?>");
             }
         }
         catch(Exception e1)
         {
+            exitWithError = true ;
             e1.printStackTrace();
-            System.exit(1);
+        }
+        finally
+        {
+            System.out.println("Finally Running GenAlphas <#AlphabetsInBowl="+arg0SoupBowlSize +"> <theWordUWantToMake='"+arg1theWord2Make+"'>");
+            if (exitWithError) {
+                System.exit(1);
+            }
+
         }
 
+        //============== VALIDATION OF PARAMETERS WHEW !!! ========================================================
+
+        arg1theWord2Make = arg1theWord2Make.toUpperCase();
         GenAlphas g = new GenAlphas() ;
         try {
             System.out.println("Generating my Soup Bowl of Letters Randomly and putting them into Alphabet Key Ordered HashMap ..... ");
@@ -132,6 +160,24 @@ public class GenAlphas {
         {
             ee.printStackTrace();
         }
+    }
+
+    private static boolean validateNoNumbrsInWord(String arg1theWord2Make) throws Exception {
+
+        Predicate<String> p = s1 ->
+        {
+            try
+            {
+                int tst = (Integer.parseInt(s1));
+                return true ;
+
+            }
+            catch(NumberFormatException nfe)
+            {
+                return false ; // ignore nfe error
+            }
+        } ;
+        return Arrays.asList(arg1theWord2Make.split("")).stream().anyMatch(p);
     }
 
 
