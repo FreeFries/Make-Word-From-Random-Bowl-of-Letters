@@ -1,6 +1,8 @@
 # Make-Word-From-Random-Bowl-of-Letters
 Given a random collection of alphabets (all caps), submit a word and see if you can make that word from the collection of letters without having to traverse thru the collection each time.
 
+Method/Function that does the making of the word is makeMyWord(String arg1theWord2Make, HashMap<String, Integer> c) where small c is the Random Collection of letters to pick from to generate your word.
+
 Supply 2 inputs, the 1st is a random set of letters generated for simplicity all capitals. For this supply on how large your bowl of alphabets is going to be. A number like 50 or 100. Then supply the word you would like to see that you can build like SuperCaliFragilisticExpialidocious. For this word to be created you need minimum 150 or more otherwise you would have to run this program a couple of times to be lucky
 
 In order to have an ORDER OF ONE in searching to see for your letters. I have ordered the collection of random letters into a HashMap<String,Integer> namely the Key is Alphabets (A-z) and Integer is the count of how many times it occurs.
