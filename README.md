@@ -21,7 +21,7 @@ Other features provided in this code Repo<br />
 (6) There is good validation for the parameters as well. Check out the use of a Java8 stream in validateNoNumbrsInWord()<br />
 (7) It uses a HashMap to store an index (key) of an alphabet and how many times (count is value) it occurs and then it builds this word with a single seek into the Map without traversing all the alphabets so it is quick.<br />
 (8) In my code I have also used some simple Java8 code snippets that include lambdas, functional interface and a simple use of a stream. Not claiming I am an expert but I have some understanding of their usage.<br />
-(9) When it cannot build the word fully it will tell you where it could not find a letter or whether it had used the letter up. Example ..... Legend ?=bowl never had that letter *=bowl had that letter but it did not have enough<br />
-S?PERCAL??R*G?*?S??C*XP?**?DOC?*?S<br />
+(9) When it cannot build the word fully it will tell you where it could not find a letter or whether it had used the letter up. Example ..... Legend ?=bowl never had that letter &#42;=bowl had that letter but it did not have enough<br />
+S?PERCAL??R&#42;G?&#42;?S??C&#42;XP?&#42;&#42;?DOC?&#42;?S<br />
 (10) Sample of OUTPUT also provided
  
