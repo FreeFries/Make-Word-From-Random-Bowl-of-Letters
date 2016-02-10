@@ -23,5 +23,43 @@ Other features provided in this code Repo<br />
 (8) In my code I have also used some simple Java8 code snippets that include lambdas, functional interface and a simple use of a stream. Not claiming I am an expert but I have some understanding of their usage.<br />
 (9) When it cannot build the word fully it will tell you where it could not find a letter or whether it had used the letter up. Example ..... Legend ?=bowl never had that letter &#42;=bowl had that letter but it did not have enough<br />
 S?PERCAL??R&#42;G?&#42;?S??C&#42;XP?&#42;&#42;?DOC?&#42;?S<br />
-(10) Sample of OUTPUT also provided
+(10) Sample of OUTPUT also provided below
+
+<div>
+
+<span style="font-size: 9.0px;"><em>$ java -jar APereiraCroydon_Beta1.0.jar 150 "SuperCaliFragilisticExpialidocious"</em></span><div><span style="font-size: 9.0px;"><em>Finally Running GenAlphas &lt;#AlphabetsInBowl=150&gt; &lt;theWordUWantToMake='SuperCaliFragilisticExpialidocious'&gt;<br>
+Generating my Soup Bowl of Letters Randomly and putting them into Alphabet Key Ordered HashMap .....<br>
+S C F R O F S T V K I X I D&nbsp; LwrBnd0=A Y Y F C O B W D F C P Y X H T L&nbsp; LwrBnd0=A V B N X X E W Q O C R H E J X D W Y S R X L&nbsp; UpprBnd25=Z Y X K W G W T D&nbsp; LwrBnd0=A M Q K M B C M D M&nbsp; UpprBnd25=Z I E I U L X G E&nbsp; UpprBnd25=Z I M Y K L B I C G W I B J P K&nbsp; LwrBnd0=A K L Q G H C Q G R N W U V S Y D&nbsp; LwrBnd0=A D Y F I S C H R X Q G U O D G P K M G H&nbsp; LwrBnd0=A B Q U D G C W O D B O W R<br>
+Doing a countback of your letters in SoupBowl HashMap...<br>
+Testing how many for As 6<br>
+Testing how many for Bs 7<br>
+Testing how many for Cs 9<br>
+Testing how many for Ds 10<br>
+Testing how many for Es 4<br>
+Testing how many for Fs 5<br>
+Testing how many for Gs 9<br>
+Testing how many for Hs 5<br>
+Testing how many for Is 8<br>
+Testing how many for Js 2<br>
+Testing how many for Ks 7<br>
+Testing how many for Ls 5<br>
+Testing how many for Ms 6<br>
+Testing how many for Ns 2<br>
+Testing how many for Os 6<br>
+Testing how many for Ps 3<br>
+Testing how many for Qs 6<br>
+Testing how many for Rs 6<br>
+Testing how many for Ss 5<br>
+Testing how many for Ts 3<br>
+Testing how many for Us 4<br>
+Testing how many for Vs 3<br>
+Testing how many for Ws 9<br>
+Testing how many for Xs 9<br>
+Testing how many for Ys 8<br>
+Testing how many for Zs 3<br>
+Attempting to build the word SUPERCALIFRAGILISTICEXPIALIDOCIOUS using the letters from the HashMap Soup Bowl<br>
+Legend ?=bowl never had that letter *=bowl had that letter but it did not have enough<br>
+SUPERCALIFRAGILISTICEXPIALIDOCIOUS<br>
+Finished trying to make this word<br>
+Wow! Wow! on your umpteenth try you actually made this big word from your bowl of Soup</em></span></div>
  
