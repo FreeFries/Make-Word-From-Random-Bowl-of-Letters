@@ -58,6 +58,7 @@ public class GenAlphas {
 
     public static void main(String...args)
     {
+        GenAlphas g = new GenAlphas() ;
         int arg0SoupBowlSize = 0 ;
         String arg1theWord2Make = "" ;
         boolean exitWithError = false ;
@@ -75,7 +76,7 @@ public class GenAlphas {
                 }
                 else
                 {
-                    if (validateNoNumbrsInWord(arg1theWord2Make))
+                    if (g.validateNoNumbrsInWord(arg1theWord2Make))
                     {
                         exitWithError = true ;
                         throw new Exception("There are NUMBERS in your Word - there are ONLY alphabets in the soup bowl as of now ... Sorry");
@@ -106,7 +107,6 @@ public class GenAlphas {
         //============== VALIDATION OF PARAMETERS WHEW !!! ========================================================
 
         arg1theWord2Make = arg1theWord2Make.toUpperCase();
-        GenAlphas g = new GenAlphas() ;
         try {
             System.out.println("Generating my Soup Bowl of Letters Randomly and putting them into Alphabet Key Ordered HashMap ..... ");
             HashMap<String,Integer> c = g.genAlphabetStream(arg0SoupBowlSize);
@@ -126,34 +126,8 @@ public class GenAlphas {
             }
             System.out.println("Attempting to build the word " + arg1theWord2Make + " using the letters from the HashMap Soup Bowl");
             System.out.println("Legend ?=bowl never had that letter *=bowl had that letter but it did not have enough ");
-            boolean youGotLucky = true ;
-
-            FindMyLtr fml = (u,h) -> { return (new FindMyLtrCodeBlk()).chkIfLtrExists(u,h); };
-
-            for (String findDisltr : arg1theWord2Make.split("") ) {
-
-                String tstt = fml.chkIfLtrExists(findDisltr,c) ;
-                if (tstt.equals("?"))
-                {
-                    youGotLucky = false;
-
-                }
-                else if (tstt.equals("*"))
-                {
-                    youGotLucky = false;
-                }
-                else
-                {
-                    // found a letter to make my word
-                }
-                System.out.print(tstt);
-            }
-
-            System.out.println("\nFinished trying to make this word");
-            if (youGotLucky)
-            {
-                System.out.println("Wow! Wow! on your umpteenth try you actually made this big word from your bowl of Soup");
-            }
+            String fullword = g.makeMyWord(arg1theWord2Make, c);
+            System.out.println(fullword);
 
         }
         catch(Exception ee)
@@ -162,7 +136,41 @@ public class GenAlphas {
         }
     }
 
-    private static boolean validateNoNumbrsInWord(String arg1theWord2Make) throws Exception {
+    private String makeMyWord(String arg1theWord2Make, HashMap<String, Integer> c) {
+        boolean youGotLucky = true ;
+
+        FindMyLtr fml = (u, h) -> { return (new FindMyLtrCodeBlk()).chkIfLtrExists(u,h); };
+
+        String whole = "" ;
+        for (String findDisltr : arg1theWord2Make.split("") ) {
+
+            String tstt = fml.chkIfLtrExists(findDisltr,c) ;
+            if (tstt.equals("?"))
+            {
+                youGotLucky = false;
+
+            }
+            else if (tstt.equals("*"))
+            {
+                youGotLucky = false;
+            }
+            else
+            {
+                // found a letter to make my word
+            }
+            whole = whole + tstt ;
+            System.out.print(tstt);
+        }
+
+        System.out.println("\nFinished trying to make this word");
+        if (youGotLucky)
+        {
+            System.out.println("Wow! Wow! on your umpteenth try you actually made this big word from your bowl of Soup");
+        }
+        return whole ;
+    }
+
+    private boolean validateNoNumbrsInWord(String arg1theWord2Make) throws Exception {
 
         Predicate<String> p = s1 ->
         {

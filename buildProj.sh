@@ -20,6 +20,9 @@ echo "Input ${valOfK}"
 if [ "${valOfK}" = "R"  ]
 then
 	cd target
+	#java -jar APereiraCroydon_Beta1.0.jar
+	#java -jar APereiraCroydon_Beta1.0.jar U 2
+	#java -jar APereiraCroydon_Beta1.0.jar 1 "1"
     java -jar APereiraCroydon_Beta1.0.jar 150 "SuperCaliFragilisticExpialidocious"
 
 else
